@@ -3,6 +3,7 @@ package com.tienlam.kata.accountManage.serviceImp;
 
 import com.tienlam.kata.accountManage.exception.AccountException;
 import com.tienlam.kata.accountManage.tools.FakeDatabase;
+import com.tienlam.kata.accountManage.tools.OperationLabel;
 
 import java.util.Date;
 
@@ -25,7 +26,7 @@ public class AccountManageServiceImp implements AccountManageService{
 		Account account =  new Account(FakeDatabase.listAccount.size() +1);
 		FakeDatabase.listAccount.add(account);
 		//create new operation 
-		operationService.createOperation(new Date(), "Create account", account.getBalance(), 0, account);
+		operationService.createOperation(new Date(), OperationLabel.CREATE_ACCOUNT, account.getBalance(), 0, account);
 		return account;
 	}
 	@Override
@@ -33,7 +34,7 @@ public class AccountManageServiceImp implements AccountManageService{
 		
 		Account account =  new Account(FakeDatabase.listAccount.size() +1, balance);
 		FakeDatabase.listAccount.add(account);
-		operationService.createOperation(new Date(), "Create account", account.getBalance(), 0, account);
+		operationService.createOperation(new Date(), OperationLabel.CREATE_ACCOUNT, account.getBalance(), 0, account);
 		return account;
 	}
 	@Override
@@ -44,7 +45,7 @@ public class AccountManageServiceImp implements AccountManageService{
 			throw new AccountException("Amount deposit is negatif : " + amount);
 		}
 		account.setBalance(account.getBalance() + amount);
-		operationService.createOperation(new Date(), "Deposit", account.getBalance(), amount, account);
+		operationService.createOperation(new Date(), OperationLabel.DEPOSIT, account.getBalance(), amount, account);
 		return account;
 	}
 	@Override
@@ -58,7 +59,7 @@ public class AccountManageServiceImp implements AccountManageService{
 			throw new AccountException("Amount withdrawl is bigger than balance :" + amount);
 		}
 		account.setBalance(account.getBalance() - amount);
-		operationService.createOperation(new Date(), "Withdrawal", account.getBalance(), amount, account);
+		operationService.createOperation(new Date(), OperationLabel.WITHDRAWAL, account.getBalance(), amount, account);
 		return account;
 	}
 
