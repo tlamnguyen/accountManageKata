@@ -1,5 +1,8 @@
 package com.tienlam.kata.accountManage.serviceImp;
 
+
+import com.tienlam.kata.accountManage.exception.AccountException;
+import com.tienlam.kata.accountManage.tools.FakeDatabase;
 import com.tienlam.kata.accountManage.entity.Account;
 import com.tienlam.kata.accountManage.service.*;
 /**
@@ -9,24 +12,35 @@ import com.tienlam.kata.accountManage.service.*;
  */
 public class AccountManageServiceImp implements AccountManageService{
 
+	@Override
 	public Account createAccount() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		//auto get size fake database +1 --> id of new Account
+		Account account =  new Account(FakeDatabase.listAccount.size() +1);
+		FakeDatabase.listAccount.add(account);
+		return account;
 	}
-
+	@Override
 	public Account createAccount(double balance) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Account account =  new Account(FakeDatabase.listAccount.size() +1, balance);
+		FakeDatabase.listAccount.add(account);
+		return account;
 	}
-
+	@Override
 	public Account deposit(Double amount, Account account) {
-		// TODO Auto-generated method stub
-		return null;
+	
+		//if the Amount deposit is negatif --> raise an exception
+		if(amount < 0) {
+			throw new AccountException("Amount deposit is negatif : " + amount);
+		}
+		account.setBalance(account.getBalance() + amount);
+		return account;
 	}
-
+	@Override
 	public double getBalance(Account account) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return account.getBalance();
 	}
 
 }
