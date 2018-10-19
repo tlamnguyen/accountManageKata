@@ -16,4 +16,13 @@ public interface ServiceManageFactory {
 	public static AccountManageService createAccountManage() {
 		return new AccountManageServiceImp();
 	}
+	
+	/**
+	 * Create a AccountManageService
+	 *
+	 * @return {@link AccountManageService}
+	 */
+	public static OperationManageService createOperationManage() {
+		return new OperationManageServiceImp();
+	}
 }

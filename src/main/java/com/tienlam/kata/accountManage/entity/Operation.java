@@ -66,6 +66,9 @@ public class Operation {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+	public String getDetails() {
+		return  "Operation details- Statement";
+	}
 	
 }
 
