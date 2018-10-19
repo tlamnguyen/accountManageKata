@@ -28,7 +28,7 @@ public class AccountManageServiceImp implements AccountManageService{
 		return account;
 	}
 	@Override
-	public Account deposit(Double amount, Account account) {
+	public Account deposit(double amount, Account account) {
 	
 		//if the Amount deposit is negatif --> raise an exception
 		if(amount < 0) {

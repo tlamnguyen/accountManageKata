@@ -29,7 +29,7 @@ public interface AccountManageService {
      * @param account : account affected
      * @return Instance of Account after deposit
      */
-	public Account deposit(Double amount, Account account);
+	public Account deposit(double amount, Account account);
 	
 	/**
      * Get current balance of account
