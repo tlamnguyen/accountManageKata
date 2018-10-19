@@ -1,4 +1,6 @@
 package com.tienlam.kata.accountManage.entity;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.tienlam.kata.accountManage.entity.Account;
@@ -17,7 +19,10 @@ public class Operation {
 	private String description;
 	private double amount;
 	private Account account;
- 
+	
+	//use this format helping us to make the test easier
+	//this can be changed by client's requirement
+	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); 
 	
 	public Operation(int id, Date dateOperation, double balance, String description, double amount, Account account) {
 		super();
@@ -67,7 +72,7 @@ public class Operation {
 		this.account = account;
 	}
 	public String getDetails() {
-		return  "Operation details- Statement";
+		return  "Operation : " + description + " | Date : " + dateFormat.format(dateOperation) +" | Amount : " +String.format( "%.2f", amount ) + " | Balance : " + String.format( "%.2f", balance ) ;
 	}
 	
 }

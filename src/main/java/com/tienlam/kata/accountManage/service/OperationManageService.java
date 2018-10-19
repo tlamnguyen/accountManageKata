@@ -22,6 +22,7 @@ public interface OperationManageService {
      * @return Operation created
      */
 	public Operation createOperation(Date dateCreate, String typeOperation, double balance, double amount, Account account);
+	
 	/**
      * Get list operation by account order by Id Asc
      * @param Account : Account affected

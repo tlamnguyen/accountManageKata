@@ -11,7 +11,7 @@ public interface AccountManageService {
 
     /**
      * Create a Account
-     * @return {Instance of Account}
+     * @return Instance of Account
      */
 	public Account createAccount();
 	 
