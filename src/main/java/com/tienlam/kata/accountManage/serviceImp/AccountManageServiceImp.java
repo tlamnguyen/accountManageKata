@@ -42,5 +42,10 @@ public class AccountManageServiceImp implements AccountManageService{
 		
 		return account.getBalance();
 	}
+	@Override
+	public Account withdrawal(double amount, Account account) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

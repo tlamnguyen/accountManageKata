@@ -17,6 +17,7 @@ import com.tienlam.kata.accountManage.service.ServiceManageFactory;
  */
 public class AccountManageServiceTest {
 	private Account accountDeposit;
+	private Account accountWithDrawal;
 	private AccountManageService accountManageService;
 	
 	@Before
@@ -24,6 +25,8 @@ public class AccountManageServiceTest {
 		accountManageService = ServiceManageFactory.createAccountManage();
 		//Account used for test function deposit
 		accountDeposit = accountManageService.createAccount();		
+		//Account used for test function withdrawal
+		accountWithDrawal = accountManageService.createAccount(100);
 
 	}
 
@@ -77,5 +80,53 @@ public class AccountManageServiceTest {
 		accountManageService.deposit((double)-100.20, accountDeposit);
 		//exception raise
 	}
+	//test for function withdrawal
+	@Test
+	public void withdrawalEqualZeroAmount() {
+		accountManageService.withdrawal((double)0, accountWithDrawal);
+		assertEquals(100, accountManageService.getBalance(accountWithDrawal), 0);
+	}
 	
+	@Test
+	public void withdrawalToBalanceZero() {
+		accountManageService.withdrawal((double)100, accountWithDrawal);
+		assertEquals(0, accountManageService.getBalance(accountWithDrawal), 0);
+	}
+	
+	@Test(expected = AccountException.class)
+	public void withdrawalAmountBiggerThanBalance() {
+		accountManageService.withdrawal((double)2000, accountWithDrawal);
+		//exception raise
+	
+	}
+	
+	@Test
+	public void withdrawalMultiTimes() {
+		accountManageService.withdrawal((double)10, accountWithDrawal);
+		accountManageService.withdrawal((double)15, accountWithDrawal);
+		accountManageService.withdrawal((double)20, accountWithDrawal);
+		assertEquals(55, accountManageService.getBalance(accountWithDrawal), 0);
+	}
+	
+	@Test
+	public void withdrawalAmountLessThanBalance() {
+		accountManageService.withdrawal((double)10, accountWithDrawal);
+		assertEquals(90, accountManageService.getBalance(accountWithDrawal), 0);
+	}
+	
+	@Test
+	public void withdrawalWithComma() {
+		accountManageService.withdrawal((double)10.5, accountWithDrawal);
+		assertEquals(89.5, accountManageService.getBalance(accountWithDrawal), 0);
+	}
+	
+	@Test
+	public void DepositAndWithdrawalManyTimes() {
+		Account accountTest = accountManageService.createAccount(100);
+		accountManageService.withdrawal((double)50, accountTest);
+		accountManageService.deposit((double)20, accountTest);
+		accountManageService.deposit((double)60, accountTest);
+		accountManageService.withdrawal((double)80, accountTest);
+		assertEquals(50, accountManageService.getBalance(accountTest), 0);
+	}
 }
