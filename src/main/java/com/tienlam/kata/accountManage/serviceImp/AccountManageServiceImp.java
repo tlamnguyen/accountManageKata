@@ -44,8 +44,11 @@ public class AccountManageServiceImp implements AccountManageService{
 	}
 	@Override
 	public Account withdrawal(double amount, Account account) {
-		// TODO Auto-generated method stub
-		return null;
+		if(amount > account.getBalance()) {
+			throw new AccountException("Amount withdrawl is bigger than balance :" + amount);
+		}
+		account.setBalance(account.getBalance() - amount);
+		return account;
 	}
 
 }
