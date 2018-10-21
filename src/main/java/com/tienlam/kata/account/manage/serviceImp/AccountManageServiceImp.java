@@ -20,8 +20,8 @@ public class AccountManageServiceImp implements AccountManageService{
 	public Account createAccount() {
 		
 		//auto get size fake database +1 --> id of new Account
-		Account account =  new Account(FakeDatabase.listAccount.size() +1);
-		FakeDatabase.listAccount.add(account);
+		Account account =  new Account(FakeDatabase.getListAccount().size() +1);
+		FakeDatabase.addAccount(account);
 		//create new operation 
 		operationService.createOperation(new Date(), OperationLabel.CREATE_ACCOUNT, account.getBalance(), 0, account);
 		return account;
@@ -29,8 +29,8 @@ public class AccountManageServiceImp implements AccountManageService{
 	@Override
 	public Account createAccount(double balance) {
 		
-		Account account =  new Account(FakeDatabase.listAccount.size() +1, balance);
-		FakeDatabase.listAccount.add(account);
+		Account account =  new Account(FakeDatabase.getListAccount().size() +1, balance);
+		FakeDatabase.addAccount(account);
 		operationService.createOperation(new Date(), OperationLabel.CREATE_ACCOUNT, account.getBalance(), 0, account);
 		return account;
 	}

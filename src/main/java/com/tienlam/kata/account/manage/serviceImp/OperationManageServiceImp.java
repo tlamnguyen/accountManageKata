@@ -19,8 +19,7 @@ public class OperationManageServiceImp implements OperationManageService{
 	@Override
 	public List<Operation> getOperationByAccountOrderByIdAsc(Account account) {
 		
-		List<Operation> listOperation = new ArrayList<Operation>();
-		listOperation = FakeDatabase.listOperation.stream().filter(op -> (op.getAccount().getId().equals(account.getId())))
+		List<Operation> listOperation  = FakeDatabase.getListOperation().stream().filter(op -> (op.getAccount().getId().equals(account.getId())))
 				.sorted((op1, op2) ->{
 					return op1.getId().compareTo(op2.getId()) ;
 				}).collect(Collectors.toList());
@@ -39,8 +38,8 @@ public class OperationManageServiceImp implements OperationManageService{
 	public Operation createOperation(Date dateCreate, String typeOperation, double balance, double amount,
 			Account account) {
 		
-		Operation op = new Operation(FakeDatabase.listOperation.size() + 1, dateCreate, balance, typeOperation, amount, account);
-		FakeDatabase.listOperation.add(op);
+		Operation op = new Operation(FakeDatabase.getListOperation().size() + 1, dateCreate, balance, typeOperation, amount, account);
+		FakeDatabase.addOperation(op);
 		return op;
 	}
 
