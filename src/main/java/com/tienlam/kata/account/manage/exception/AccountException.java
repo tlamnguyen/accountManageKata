@@ -1,4 +1,4 @@
-package com.tienlam.kata.accountManage.exception;
+package com.tienlam.kata.account.manage.exception;
 
 /**
  * 

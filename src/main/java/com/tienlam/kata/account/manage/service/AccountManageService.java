@@ -1,6 +1,6 @@
-package com.tienlam.kata.accountManage.service;
+package com.tienlam.kata.account.manage.service;
 
-import com.tienlam.kata.accountManage.entity.Account;
+import com.tienlam.kata.account.manage.entity.Account;
 
 /**
  * 

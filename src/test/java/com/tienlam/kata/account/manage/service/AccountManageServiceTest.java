@@ -1,14 +1,14 @@
-package com.tienlam.kata.accountManage.service;
+package com.tienlam.kata.account.manage.service;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.tienlam.kata.accountManage.entity.Account;
-import com.tienlam.kata.accountManage.exception.AccountException;
-import com.tienlam.kata.accountManage.service.AccountManageService;
-import com.tienlam.kata.accountManage.service.ServiceManageFactory;
+import com.tienlam.kata.account.manage.entity.Account;
+import com.tienlam.kata.account.manage.exception.AccountException;
+import com.tienlam.kata.account.manage.service.AccountManageService;
+import com.tienlam.kata.account.manage.service.ServiceManageFactory;
 
 /**
  * 

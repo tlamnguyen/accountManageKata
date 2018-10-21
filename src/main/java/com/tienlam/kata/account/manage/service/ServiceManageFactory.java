@@ -1,7 +1,7 @@
-package com.tienlam.kata.accountManage.service;
+package com.tienlam.kata.account.manage.service;
 
-import com.tienlam.kata.accountManage.service.AccountManageService;
-import com.tienlam.kata.accountManage.serviceImp.*;
+import com.tienlam.kata.account.manage.service.AccountManageService;
+import com.tienlam.kata.account.manage.serviceImp.*;
 /**
  * 
  * @author Lam.NGUYEN

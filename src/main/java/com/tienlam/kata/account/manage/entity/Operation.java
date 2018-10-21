@@ -1,9 +1,9 @@
-package com.tienlam.kata.accountManage.entity;
+package com.tienlam.kata.account.manage.entity;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.tienlam.kata.accountManage.entity.Account;
+import com.tienlam.kata.account.manage.entity.Account;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package com.tienlam.kata.accountManage.tools;
+package com.tienlam.kata.account.manage.tools;
 
 public class OperationLabel {
 	public static String DEPOSIT = "Deposit";

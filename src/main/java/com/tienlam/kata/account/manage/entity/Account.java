@@ -1,4 +1,4 @@
-package com.tienlam.kata.accountManage.entity;
+package com.tienlam.kata.account.manage.entity;
 
 /**
  * 
