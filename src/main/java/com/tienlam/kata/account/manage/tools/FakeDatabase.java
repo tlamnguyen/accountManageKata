@@ -10,6 +10,7 @@ import com.tienlam.kata.account.manage.entity.Operation;
  * @author Lam.NGUYEN
  *  Class Fake Database with its operations
  *  Users can not modify directment from listAccount and listOperation, they have to use public function.
+ *  We can use the Strategy Design pattern for this class  --> complicated in this moment 
  */
 public class FakeDatabase {
 	private static final List<Account> listAccount = new ArrayList<>();

@@ -5,7 +5,9 @@ import com.tienlam.kata.account.manage.entity.Account;
 /**
  * 
  * @author Lam.NGUYEN
- *
+ * We can use the Factory Design pattern for this operation  --> not for this moment
+ * In the future, if we have many client's type (Client public, client prive, client gold), who share the same operation
+ * (deposit, withdrawal, transfert, loan, ....)
  */
 public interface AccountManageService {
 
