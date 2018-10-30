@@ -1,5 +1,7 @@
 package com.tienlam.kata.account.manage.entity;
 
+import java.math.BigDecimal;
+
 /**
  * 
  * @author Lam.NGUYEN
@@ -10,24 +12,24 @@ public class Account {
 	
 	//in the real case, this value is auto increased
 	private Integer id;
-	private double balance;
+	private BigDecimal balance;
 	
 	public Account(int id) {
 		this.setId(id);
-		this.balance = 0;
+		this.balance = new BigDecimal(0);
 	}
 	
 	//When create an account, its balance maybe negatif !!!!!
-	public Account(int id, double balance) {
+	public Account(int id, BigDecimal balance) {
 		this.setId(id);
 		this.balance = balance;
 	}
 	
-	public double getBalance() {
+	public BigDecimal getBalance() {
 		return balance;
 	}
 	
-	public void setBalance(double balance) {
+	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
 	

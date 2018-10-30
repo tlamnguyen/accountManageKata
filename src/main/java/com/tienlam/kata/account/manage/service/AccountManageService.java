@@ -1,5 +1,7 @@
 package com.tienlam.kata.account.manage.service;
 
+import java.math.BigDecimal;
+
 import com.tienlam.kata.account.manage.entity.Account;
 
 /**
@@ -22,7 +24,7 @@ public interface AccountManageService {
      * @param balance : the initialization montant of Account
      * @return Instance of Account
      */
-	public Account createAccount(double balance);
+	public Account createAccount(BigDecimal balance);
 	
 	/**
      * Deposit money to account
@@ -31,20 +33,20 @@ public interface AccountManageService {
      * @param account : account affected
      * @return Instance of Account after deposit
      */
-	public Account deposit(double amount, Account account);
+	public Account deposit(BigDecimal amount, Account account);
 	
 	/**
      * Get current balance of account, if the amount is negatif, this function show an exception
      * @param account : account affected
      * @return current balance of account
      */
-	public double getBalance(Account account);
+	public BigDecimal getBalance(Account account);
 
 	/**
      * Withdrawal money from account , if the amount > balance , this function show an exception 
      * @param account : account affected
      * @return Instance of account after withdrawal
      */
-	public Account withdrawal(double amount, Account account);
+	public Account withdrawal(BigDecimal amount, Account account);
 	
 }

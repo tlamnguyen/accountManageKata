@@ -1,4 +1,5 @@
 package com.tienlam.kata.account.manage.entity;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,16 +16,16 @@ public class Operation {
 	//int the real case with database, this value is unique and auto increased
 	private Integer id;
 	private Date dateOperation;
-	private double balance;
+	private BigDecimal balance;
 	private String description;
-	private double amount;
+	private BigDecimal amount;
 	private Account account;
 	
 	//use this format helping us to make the test easier
 	//this can be changed by client's requirement
 	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); 
 	
-	public Operation(int id, Date dateOperation, double balance, String description, double amount, Account account) {
+	public Operation(int id, Date dateOperation, BigDecimal balance, String description, BigDecimal amount, Account account) {
 		super();
 		this.setId(id);
 		this.dateOperation = dateOperation;
@@ -40,10 +41,10 @@ public class Operation {
 	public void setDateOperation(Date dateOperation) {
 		this.dateOperation = dateOperation;
 	}
-	public double getBalance() {
+	public BigDecimal getBalance() {
 		return balance;
 	}
-	public void setBalance(double balance) {
+	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
 	public String getDescription() {
@@ -52,10 +53,10 @@ public class Operation {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public double getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
-	public void setAmount(double amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 	

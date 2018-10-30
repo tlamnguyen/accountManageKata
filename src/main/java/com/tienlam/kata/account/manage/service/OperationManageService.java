@@ -1,5 +1,6 @@
 package com.tienlam.kata.account.manage.service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface OperationManageService {
      * @param Account : Account affected
      * @return Operation created
      */
-	public Operation createOperation(Date dateCreate, String typeOperation, double balance, double amount, Account account);
+	public Operation createOperation(Date dateCreate, String typeOperation, BigDecimal balance, BigDecimal amount, Account account);
 	
 	/**
      * Get list operation by account order by Id Asc

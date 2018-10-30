@@ -7,6 +7,7 @@ import com.tienlam.kata.account.manage.service.*;
 import com.tienlam.kata.account.manage.tools.FakeDatabase;
 import com.tienlam.kata.account.manage.tools.OperationLabel;
 
+import java.math.BigDecimal;
 import java.util.Date;
 /**
  * 
@@ -23,39 +24,39 @@ public class AccountManageServiceImp implements AccountManageService{
 		Account account =  new Account(FakeDatabase.getListAccount().size() +1);
 		FakeDatabase.addAccount(account);
 		//create new operation 
-		operationService.createOperation(new Date(), OperationLabel.CREATE_ACCOUNT.getOperationDescription(), account.getBalance(), 0, account);
+		operationService.createOperation(new Date(), OperationLabel.CREATE_ACCOUNT.getOperationDescription(), account.getBalance(), new BigDecimal(0), account);
 		return account;
 	}
 	@Override
-	public Account createAccount(double balance) {
+	public Account createAccount(BigDecimal balance) {
 		
 		Account account =  new Account(FakeDatabase.getListAccount().size() +1, balance);
 		FakeDatabase.addAccount(account);
-		operationService.createOperation(new Date(), OperationLabel.CREATE_ACCOUNT.getOperationDescription(), account.getBalance(), 0, account);
+		operationService.createOperation(new Date(), OperationLabel.CREATE_ACCOUNT.getOperationDescription(), account.getBalance(), new BigDecimal(0), account);
 		return account;
 	}
 	@Override
-	public Account deposit(double amount, Account account) {
+	public Account deposit(BigDecimal amount, Account account) {
 	
 		//if the Amount deposit is negatif --> raise an exception
-		if(amount < 0) {
+		if(amount.compareTo(new BigDecimal(0)) < 0) {
 			throw new AccountException("Amount deposit is negatif : " + amount);
 		}
-		account.setBalance(account.getBalance() + amount);
+		account.setBalance(account.getBalance().add(amount));
 		operationService.createOperation(new Date(), OperationLabel.DEPOSIT.getOperationDescription(), account.getBalance(), amount, account);
 		return account;
 	}
 	@Override
-	public double getBalance(Account account) {
+	public BigDecimal getBalance(Account account) {
 		
 		return account.getBalance();
 	}
 	@Override
-	public Account withdrawal(double amount, Account account) {
-		if(amount > account.getBalance()) {
+	public Account withdrawal(BigDecimal amount, Account account) {
+		if(amount.compareTo(account.getBalance()) > 0) {
 			throw new AccountException("Amount withdrawl is bigger than balance :" + amount);
 		}
-		account.setBalance(account.getBalance() - amount);
+		account.setBalance(account.getBalance().subtract(amount));
 		operationService.createOperation(new Date(), OperationLabel.WITHDRAWAL.getOperationDescription(), account.getBalance(), amount, account);
 		return account;
 	}
