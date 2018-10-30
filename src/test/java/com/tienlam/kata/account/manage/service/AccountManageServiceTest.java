@@ -1,9 +1,11 @@
 package com.tienlam.kata.account.manage.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import java.math.BigDecimal;
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,25 +37,26 @@ public class AccountManageServiceTest {
 	@Test
 	public void createAccountWithoutBalance() {
 		Account newAccount = accountManageService.createAccount();
-		assertEquals(new BigDecimal(0), accountManageService.getBalance(newAccount));
+		//assertEquals(new BigDecimal(0), accountManageService.getBalance(newAccount));
+		assertThat(new BigDecimal(0),  Matchers.comparesEqualTo(accountManageService.getBalance(newAccount)));
 	}
 	
 	@Test
 	public void createAccountWithBalancePositif() {
 		Account newAccount = accountManageService.createAccount(new BigDecimal(200));
-		assertEquals(new BigDecimal(200), accountManageService.getBalance(newAccount));
+		assertThat(new BigDecimal(200),  Matchers.comparesEqualTo(accountManageService.getBalance(newAccount)));
 	}
 	
 	@Test
 	public void createAccountWithBalanceNegatif() {
 		Account newAccount = accountManageService.createAccount(new BigDecimal(-200));
-		assertEquals(new BigDecimal(-200), accountManageService.getBalance(newAccount));
+		assertThat(new BigDecimal(-200),  Matchers.comparesEqualTo(accountManageService.getBalance(newAccount)));
 	}
 	
 	@Test
 	public void depositEqualZero() {
 		accountManageService.deposit(new BigDecimal(0), accountDeposit);
-		assertEquals(new BigDecimal(0), accountManageService.getBalance(accountDeposit));
+		assertThat(new BigDecimal(0),  Matchers.comparesEqualTo(accountManageService.getBalance(accountDeposit)));
 	}
 	
 	@Test
@@ -62,19 +65,19 @@ public class AccountManageServiceTest {
 		accountManageService.deposit(new BigDecimal(200), accountDeposit);
 		accountManageService.deposit(new BigDecimal(200), accountDeposit);
 		accountManageService.deposit(new BigDecimal(200), accountDeposit);
-		assertEquals(new BigDecimal(700), accountManageService.getBalance(accountDeposit));
+		assertThat(new BigDecimal(700),  Matchers.comparesEqualTo(accountManageService.getBalance(accountDeposit)));
 	}
 	
 	@Test
 	public void depositABigNumber() {
 		accountManageService.deposit(new BigDecimal(50000), accountDeposit);
-		assertEquals(new BigDecimal(50000), accountManageService.getBalance(accountDeposit));
+		assertThat(new BigDecimal(50000),  Matchers.comparesEqualTo(accountManageService.getBalance(accountDeposit)));
 	}
 	
 	@Test
 	public void depositWithComma() {
 		accountManageService.deposit(new BigDecimal(5000.25), accountDeposit);
-		assertEquals(new BigDecimal(5000.25), accountManageService.getBalance(accountDeposit));
+		assertThat(new BigDecimal(5000.25),  Matchers.comparesEqualTo(accountManageService.getBalance(accountDeposit)));
 	}
 	
 	@Test(expected = AccountException.class)
@@ -86,13 +89,13 @@ public class AccountManageServiceTest {
 	@Test
 	public void withdrawalEqualZeroAmount() {
 		accountManageService.withdrawal(new BigDecimal(0), accountWithDrawal);
-		assertEquals(new BigDecimal(100), accountManageService.getBalance(accountWithDrawal));
+		assertThat(new BigDecimal(100),  Matchers.comparesEqualTo(accountManageService.getBalance(accountWithDrawal)));
 	}
 	
 	@Test
 	public void withdrawalToBalanceZero() {
 		accountManageService.withdrawal(new BigDecimal(100), accountWithDrawal);
-		assertEquals(new BigDecimal(0), accountManageService.getBalance(accountWithDrawal));
+		assertThat(new BigDecimal(0),  Matchers.comparesEqualTo(accountManageService.getBalance(accountWithDrawal)));
 	}
 	
 	@Test(expected = AccountException.class)
@@ -107,19 +110,19 @@ public class AccountManageServiceTest {
 		accountManageService.withdrawal(new BigDecimal(10), accountWithDrawal);
 		accountManageService.withdrawal(new BigDecimal(15), accountWithDrawal);
 		accountManageService.withdrawal(new BigDecimal(20), accountWithDrawal);
-		assertEquals(new BigDecimal(55), accountManageService.getBalance(accountWithDrawal));
+		assertThat(new BigDecimal(55),  Matchers.comparesEqualTo(accountManageService.getBalance(accountWithDrawal)));
 	}
 	
 	@Test
 	public void withdrawalAmountLessThanBalance() {
 		accountManageService.withdrawal(new BigDecimal(10), accountWithDrawal);
-		assertEquals(new BigDecimal(90), accountManageService.getBalance(accountWithDrawal));
+		assertThat(new BigDecimal(90),  Matchers.comparesEqualTo(accountManageService.getBalance(accountWithDrawal)));
 	}
 	
 	@Test
 	public void withdrawalWithComma() {
 		accountManageService.withdrawal(new BigDecimal(10.5), accountWithDrawal);
-		assertEquals(new BigDecimal(89.5), accountManageService.getBalance(accountWithDrawal));
+		assertThat(new BigDecimal(89.5),  Matchers.comparesEqualTo(accountManageService.getBalance(accountWithDrawal)));
 	}
 	
 	@Test
@@ -129,6 +132,6 @@ public class AccountManageServiceTest {
 		accountManageService.deposit(new BigDecimal(20), accountTest);
 		accountManageService.deposit(new BigDecimal(60), accountTest);
 		accountManageService.withdrawal(new BigDecimal(80), accountTest);
-		assertEquals(new BigDecimal(50), accountManageService.getBalance(accountTest));
+		assertThat(new BigDecimal(50),  Matchers.comparesEqualTo(accountManageService.getBalance(accountTest)));
 	}
 }
